@@ -77,7 +77,7 @@ class AuthorController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:100',
-            'bio' => 'max:255',
+            'bio' => 'max:1024',
             'birth_date' => 'date|before:now',
         ]);
     }

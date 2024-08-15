@@ -53,7 +53,7 @@ class BookController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|max:100',
-            'description' => 'max:255',
+            'description' => 'max:1024',
             'publish_date' => 'date|before:now',
             'author_id' => 'exists:authors,id',
         ]);
