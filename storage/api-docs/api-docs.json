@@ -1,0 +1,86 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Example library API",
+        "description": "",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "Library API server"
+        }
+    ],
+    "paths": {
+        "/author": {
+            "get": {
+                "tags": [
+                    "author"
+                ],
+                "summary": "Get all author data",
+                "description": "",
+                "operationId": "15dce98d7aa765314a985746288d76d1",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Author's name",
+                        "style": "form"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Author": {
+                "properties": {
+                    "name": {
+                        "description": "Author's name,",
+                        "type": "string"
+                    },
+                    "bio": {
+                        "description": "Author's biography,",
+                        "type": "string"
+                    },
+                    "birth_date": {
+                        "description": "Author's birth date,",
+                        "type": "date"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Author"
+                }
+            },
+            "Book": {
+                "properties": {
+                    "title": {
+                        "description": "Book's title,",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Book's description,",
+                        "type": "string"
+                    },
+                    "publish_date": {
+                        "description": "Published date,"
+                    },
+                    "author_id": {
+                        "description": "Author's id,",
+                        "type": "integer"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Book"
+                }
+            }
+        }
+    }
+}
