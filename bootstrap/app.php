@@ -77,6 +77,9 @@ $app->configure('swagger-lume');
 |
 */
 
+$app->middleware([
+    BaseMiddleware::class,
+]);
 // $app->middleware([
 //     App\Http\Middleware\ExampleMiddleware::class
 // ]);
@@ -96,7 +99,23 @@ $app->configure('swagger-lume');
 |
 */
 
+if (!function_exists('config_path')) {
+    /**
+     * Get the configuration path.
+     *
+     * @param  string $path
+     * @return string
+     */
+    function config_path($path = '')
+    {
+        return app()->basePath() . '/config' . ($path ? '/' . $path : $path);
+    }
+}
+
+$app->register(Illuminate\Redis\RedisServiceProvider::class);
 $app->register(\SwaggerLume\ServiceProvider::class);
+// $app->register(VXM\Async\AsyncServiceProvider::class);
+// $app->register(SaeedVaziry\LaravelAsync\LaravelAsyncServiceProvider::class);
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
