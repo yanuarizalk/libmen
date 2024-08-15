@@ -1,0 +1,29 @@
+{
+    "listeners": {
+        "*:80": {
+            "pass": "routes"
+        }
+    },
+
+    "routes": [
+        {
+            "match": {
+                "uri": "!/index.php"
+            },
+            "action": {
+                "share": "/app/public/",
+                "fallback": {
+                    "pass": "applications/lumen"
+                }
+            }
+        }
+    ],
+
+    "applications": {
+        "lumen": {
+            "type": "php",
+            "root": "/app/public/",
+            "script": "index.php"
+        }
+    }
+}
