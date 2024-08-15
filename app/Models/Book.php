@@ -20,14 +20,14 @@ class Book extends Model
      * @var string
      * @OA\Property()
      */
-    public string $title;
+    public ?string $title = null;
 
     /**
      * Book's description,
      * @var string
      * @OA\Property()
      */
-    public string $description;
+    public ?string $description = null;
 
     /**
      * Published date,

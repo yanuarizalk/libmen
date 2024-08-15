@@ -20,14 +20,14 @@ class Author extends Model
      * @var string
      * @OA\Property()
      */
-    public string $name;
+    public ?string $name = null;
 
     /**
      * Author's biography,
      * @var string
      * @OA\Property()
      */
-    public string $bio;
+    public ?string $bio = null;
 
     /**
      * Author's birth date,
