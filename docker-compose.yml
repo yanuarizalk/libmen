@@ -1,15 +1,14 @@
 services:
-  webserver:
-    image: unit:1.32.1-php8.2
-    env_file:
-      - .env.nginx
-    volumes:
-      - ./docker/unit.json:/docker-entrypoint.d/lumen.json
-      - ./:/app/
-    ports:
-      - "9000:9000"
-      - "80:80"
-    user: root:root
+  # webserver:
+  #   image: unit:1.32.1-php8.2
+  #   env_file:
+  #     - .env.nginx
+  #   volumes:
+  #     - ./docker/unit.json:/docker-entrypoint.d/lumen.json
+  #     - ./:/app/
+  #   ports:
+  #     - "9000:9000"
+  #     - "80:80"
   db:
     image: mysql:8.4.2
     ports:
