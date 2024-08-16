@@ -57,6 +57,28 @@ class AuthorController extends Controller
         return response()->json($data);
     }
 
+    /**
+     * @OA\Get(
+     *     path="/author/{id}",
+     *     summary="Get author data by id",
+     *     tags={"author"},
+     *     description="",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id",
+     *         style="form"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\Schema(
+     *             type="object",
+     *             @OA\Items(ref="#/components/schemas/Author")
+     *         ),
+     *     )
+     * )
+     */
     public function detail($id)
     {
         $cacheKey = "author:$id";
@@ -82,6 +104,27 @@ class AuthorController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Post(
+     *     path="/author",
+     *     summary="Create Author",
+     *     tags={"author"},
+     *     description="",
+     *     @OA\RequestBody(
+     *         description="Author's data",
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/Author")
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="successful operation",
+     *         @OA\Schema(
+     *             type="object",
+     *             @OA\Items(ref="#/components/schemas/Author")
+     *         ),
+     *     )
+     * )
+     */
     public function store(Request $request)
     {
         $this->validation($request);
@@ -97,6 +140,33 @@ class AuthorController extends Controller
         return response()->json($data, 201);
     }
 
+    /**
+     * @OA\Put(
+     *     path="/author/{id}",
+     *     summary="Update Author",
+     *     tags={"author"},
+     *     description="",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id",
+     *         style="form"
+     *     ),
+     *     @OA\RequestBody(
+     *         description="Author's data",
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/Author")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\Schema(
+     *             type="object",
+     *             @OA\Items(ref="#/components/schemas/Author")
+     *         ),
+     *     )
+     * )
+     */
     public function update(Request $request, $id)
     {
         $this->validation($request);
@@ -118,6 +188,25 @@ class AuthorController extends Controller
         return response()->json($data, 200);
     }
 
+
+    /**
+     * @OA\Delete(
+     *     path="/author/{id}",
+     *     summary="Delete Author",
+     *     tags={"author"},
+     *     description="",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id",
+     *         style="form"
+     *     ),
+     *     @OA\Response(
+     *         response=204,
+     *         description="successful operation",
+     *     )
+     * )
+     */
     public function destroy($id)
     {
         $data = Author::find($id);
@@ -136,6 +225,29 @@ class AuthorController extends Controller
         return response()->json(null, 204);
     }
 
+
+    /**
+     * @OA\Get(
+     *     path="/author/{id}/books",
+     *     summary="Get all book authored by id",
+     *     tags={"author"},
+     *     description="",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id",
+     *         style="form"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\Schema(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/Book")
+     *         ),
+     *     )
+     * )
+     */
     public function books(Request $request, $authorId)
     {
         $cacheKey = "author:$authorId:books:$request->orderBy:$request->orderAs:$request->page:$request->pageSize";

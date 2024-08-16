@@ -33,20 +33,281 @@
                         "description": "successful operation"
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "author"
+                ],
+                "summary": "Create Author",
+                "description": "",
+                "operationId": "0c9d0672a33503f335cab737035a2f7b",
+                "requestBody": {
+                    "description": "Author's data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Author"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/author/{id}": {
+            "get": {
+                "tags": [
+                    "author"
+                ],
+                "summary": "Get author data by id",
+                "description": "",
+                "operationId": "cd78764a8dacf98012c5e02beab48c90",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id",
+                        "style": "form"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "author"
+                ],
+                "summary": "Update Author",
+                "description": "",
+                "operationId": "83f305cf6f0b2cbacd2ecfb7d698c277",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id",
+                        "style": "form"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Author's data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Author"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "author"
+                ],
+                "summary": "Delete Author",
+                "description": "",
+                "operationId": "8e149880011f9e6423c7f0957452607f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id",
+                        "style": "form"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/author/{id}/books": {
+            "get": {
+                "tags": [
+                    "author"
+                ],
+                "summary": "Get all book authored by id",
+                "description": "",
+                "operationId": "60e86906b3dff7152169282232fb43b6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id",
+                        "style": "form"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/book": {
+            "get": {
+                "tags": [
+                    "book"
+                ],
+                "summary": "Get all book data",
+                "description": "",
+                "operationId": "42a6f4e29caf4d9f451f6f6e3587a5ae",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "Book's title",
+                        "style": "form"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page",
+                        "style": "form"
+                    },
+                    {
+                        "name": "page_size",
+                        "in": "query",
+                        "description": "Page size (1 - 100)",
+                        "style": "form"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "book"
+                ],
+                "summary": "Create Book",
+                "description": "",
+                "operationId": "e3068b014c6c1651772bb1bcdb0b1ff1",
+                "requestBody": {
+                    "description": "Book's data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Book"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/book/{id}": {
+            "get": {
+                "tags": [
+                    "book"
+                ],
+                "summary": "Get single book data",
+                "description": "",
+                "operationId": "2415132c80e85b5321371e37b041160d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Book's id",
+                        "style": "form"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "book"
+                ],
+                "summary": "Update Book",
+                "description": "",
+                "operationId": "18d94ef55f77c8d862b6c75e6edea7ca",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id",
+                        "style": "form"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Book's data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Book"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "book"
+                ],
+                "summary": "Delete Book",
+                "description": "",
+                "operationId": "9d1fc5ef9a782361da0d663b705f2bc4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id",
+                        "style": "form"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "successful operation"
+                    }
+                }
             }
         }
     },
     "components": {
         "schemas": {
             "Author": {
+                "title": "Author",
                 "properties": {
                     "name": {
                         "description": "Author's name,",
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "bio": {
                         "description": "Author's biography,",
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "birth_date": {
                         "description": "Author's birth date,",
@@ -59,14 +320,17 @@
                 }
             },
             "Book": {
+                "title": "Book",
                 "properties": {
                     "title": {
                         "description": "Book's title,",
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "description": {
                         "description": "Book's description,",
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "publish_date": {
                         "description": "Published date,"

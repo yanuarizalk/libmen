@@ -9,6 +9,40 @@ use Illuminate\Support\Facades\Redis;
 
 class BookController extends Controller
 {
+    /**
+     * @OA\Get(
+     *     path="/book",
+     *     summary="Get all book data",
+     *     tags={"book"},
+     *     description="",
+     *     @OA\Parameter(
+     *         name="title",
+     *         in="query",
+     *         description="Book's title",
+     *         style="form"
+     *     ),
+     *     @OA\Parameter(
+     *         name="page",
+     *         in="query",
+     *         description="Page",
+     *         style="form"
+     *     ),
+     *     @OA\Parameter(
+     *         name="page_size",
+     *         in="query",
+     *         description="Page size (1 - 100)",
+     *         style="form"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\Schema(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/Book")
+     *         ),
+     *     )
+     * )
+     */
     public function index(Request $request)
     {
         $title = $request->query('title');
@@ -33,6 +67,28 @@ class BookController extends Controller
         return response()->json($data);
     }
 
+    /**
+     * @OA\Get(
+     *     path="/book/{id}",
+     *     summary="Get single book data",
+     *     tags={"book"},
+     *     description="",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Book's id",
+     *         style="form"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\Schema(
+     *             type="object",
+     *             @OA\Items(ref="#/components/schemas/Book")
+     *         ),
+     *     )
+     * )
+     */
     public function detail($id)
     {
         $cacheKey = "book:$id";
@@ -59,6 +115,27 @@ class BookController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Post(
+     *     path="/book",
+     *     summary="Create Book",
+     *     tags={"book"},
+     *     description="",
+     *     @OA\RequestBody(
+     *         description="Book's data",
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/Book")
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="successful operation",
+     *         @OA\Schema(
+     *             type="object",
+     *             @OA\Items(ref="#/components/schemas/Book")
+     *         ),
+     *     )
+     * )
+     */
     public function store(Request $request)
     {
         $this->validation($request);
@@ -75,6 +152,33 @@ class BookController extends Controller
         return response()->json($book, 201);
     }
 
+    /**
+     * @OA\Put(
+     *     path="/book/{id}",
+     *     summary="Update Book",
+     *     tags={"book"},
+     *     description="",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id",
+     *         style="form"
+     *     ),
+     *     @OA\RequestBody(
+     *         description="Book's data",
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/Book")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\Schema(
+     *             type="object",
+     *             @OA\Items(ref="#/components/schemas/Book")
+     *         ),
+     *     )
+     * )
+     */
     public function update(Request $request, $id)
     {
         $this->validation($request);
@@ -100,6 +204,24 @@ class BookController extends Controller
         return response()->json($data, 200);
     }
 
+    /**
+     * @OA\Delete(
+     *     path="/book/{id}",
+     *     summary="Delete Book",
+     *     tags={"book"},
+     *     description="",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id",
+     *         style="form"
+     *     ),
+     *     @OA\Response(
+     *         response=204,
+     *         description="successful operation",
+     *     )
+     * )
+     */
     public function destroy($id)
     {
         $data = Book::find($id);

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @OA\Schema(
+ *   title="Book",
  *     @OA\Xml(
  *         name="Book"
  *     ))

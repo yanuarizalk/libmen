@@ -17,7 +17,7 @@ class PagingMiddleware
     public function handle(Request $req, Closure $next)
     {
         $pageSize = $req->query('page_size', 50);
-        $req->pageSize = $pageSize > 100 ? 100 : $pageSize;
+        $req->pageSize = $pageSize > 100 ? 100 : ($pageSize < 1 ? 1 : $pageSize);
 
         $req->orderBy = $req->query('order_by');
         $orderAs = $req->query('order_as', 'asc');
